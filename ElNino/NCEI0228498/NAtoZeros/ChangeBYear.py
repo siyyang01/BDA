@@ -25,9 +25,16 @@ annual_min_max_bleaching = filtered_data.groupby('YEAR').agg({
     'MAX_PERCENT_BLEACHED': 'mean'
 }).reset_index()
 
+# 10/1 플롯에 엘니뇨 기간 초록색 점선 추가
+special_years = [(1982, 1), (1983, 12), (1995, 1), (1996, 12), (2014, 1), (2016, 12)]
+
+
 plt.figure(figsize=(10, 6))
 plt.plot(annual_min_max_bleaching['YEAR'], annual_min_max_bleaching['MIN_PERCENT_BLEACHED'], label='Average Min Percent Bleached', color='b')
 plt.plot(annual_min_max_bleaching['YEAR'], annual_min_max_bleaching['MAX_PERCENT_BLEACHED'], label='Average Max Percent Bleached', color='r')
+
+for year, month in special_years:
+    plt.axvline(x=year + (month - 1) / 12, color='lightgreen', linestyle='--', lw=2)
 
 plt.title('Change in Min and Max Coral Bleaching Percent Over Time', fontsize=16, fontweight='bold')
 plt.xlabel('Year', fontsize=14)
