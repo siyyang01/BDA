@@ -31,3 +31,11 @@ articles:
 Hughes et al. Bleaching ms Feb13.pdf: min, max 데이터의 중요성 시사
 
 mcmp_man_part5_references: 선행연구 목록
+
+.
+
+.
+
+10/15 수정사항
+
+갖고있는 데이터만으로는 상관성 입증이 어려운데 찾아보니 메타회귀분석이라는게 있어서 좀 해봤습니다
