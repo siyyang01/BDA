@@ -1,0 +1,44 @@
+설명력 0.169
+MAXDHW는 유의미한 영향을 미침. TimeLag, SSTmean, SSTvar는 유의X
+F검정 통계적으로 유의
+잔차 정규성 벗어났을수있음
+
+Cond. No. 다중공선성 문제 가능성있음
+
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  change['Cover_Diff'] = ElNino_FULL['Mean_Cover_Before'] - ElNino_FULL['Mean_Cover_Resp']
+Best model: LinearRegression()
+Overall effect size: 11.068427076044555
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:             Cover_Diff   R-squared:                       0.169
+Model:                            OLS   Adj. R-squared:                  0.151
+Method:                 Least Squares   F-statistic:                     9.489
+Date:                Tue, 15 Oct 2024   Prob (F-statistic):           5.26e-07
+Time:                        02:38:20   Log-Likelihood:                -811.50
+No. Observations:                 192   AIC:                             1633.
+Df Residuals:                     187   BIC:                             1649.
+Df Model:                           4
+Covariance Type:            nonrobust
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept    -12.7703     42.059     -0.304      0.762     -95.740      70.200
+MaxDHW         1.6459      0.349      4.719      0.000       0.958       2.334
+TimeLag        0.0087      0.005      1.629      0.105      -0.002       0.019
+SSTmean        0.5017      1.446      0.347      0.729      -2.352       3.355
+SSTvar         0.1433      0.857      0.167      0.867      -1.548       1.835
+==============================================================================
+Omnibus:                       40.659   Durbin-Watson:                   1.338
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               60.876
+Skew:                           1.194   Prob(JB):                     6.04e-14
+Kurtosis:                       4.382   Cond. No.                     1.22e+04
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.22e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.
