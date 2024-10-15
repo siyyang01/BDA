@@ -66,7 +66,8 @@ ElNino_FULL['SD_Cover_Resp'] = ElNino_FULL['SD_Cover_Resp'].replace(0, 0.1)
 ElNino_FULL['SD_Bleaching_Resp'] = ElNino_FULL['SD_Bleaching_Resp'].replace(0, 0.1)
 ElNino_afteronly['SD_Bleaching_Resp'] = ElNino_afteronly['SD_Bleaching_Resp'].replace(0, 0.1)
 
-# 분석을 위한 데이터 서브셋팅
+
+
 cover = ElNino_FULL[ElNino_FULL['Parameter'] == "Cover"]
 cover = cover.dropna(subset=['SD_Cover_Before', 'SD_Cover_Resp'])
 
@@ -94,7 +95,7 @@ y = cover['Cover_Diff']
 imputer = SimpleImputer(strategy='mean')
 X_imputed = imputer.fit_transform(X)
 
-# 'normalize' 매개변수 제거 및 데이터 스케일링 추가
+# normalize 없어져서 미리 스케일링
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X_imputed)
 
@@ -118,10 +119,17 @@ print(f"Overall effect size: {overall_effect_size}")
 # 모델 출력 요약
 print(cover_model.summary())
 
-# 그래프 생성 (Profile plots)
+valid_maxdhw = cover[['MaxDHW', 'Cover_Diff']].dropna()
+
+# 그래프
 plt.figure(figsize=(6, 6))
 plt.subplot(2, 1, 1)
-plt.plot(cover['MaxDHW'], cover['Cover_Diff'], 'o')
+plt.scatter(cover['MaxDHW'], cover['Cover_Diff'], label='Data')
+# MaxDHW vs Cover Difference에 대한 추세선 추가 (결측치 제거함)
+if len(valid_maxdhw) > 1:
+    m, b = np.polyfit(valid_maxdhw['MaxDHW'], valid_maxdhw['Cover_Diff'], 1)
+    plt.plot(valid_maxdhw['MaxDHW'], m * valid_maxdhw['MaxDHW'] + b, color='red', label='Trendline')
+
 plt.title('MaxDHW vs Cover Difference')
 plt.xlabel('MaxDHW')
 plt.ylabel('Cover Difference')
