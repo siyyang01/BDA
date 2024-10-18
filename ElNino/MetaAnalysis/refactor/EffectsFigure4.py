@@ -72,7 +72,7 @@ axs[1].text(-0.5, 0.7, "TimeLag:MaxDHW*", fontsize=12)
 axs[1].text(-0.5, 0.3, "SSTmean*", fontsize=12)
 axs[1].text(-1.1, 0.9, "b)", fontsize=14)
 
-# Panel 3: 표지판 모델과 조정 변수
+# Panel 3: 피복도(Cover) 모델과 조정 변수
 full_cov = [float(cov_1yr_est[1]), float(cov_1yr_est[2])]
 lb_cov_dhw = -0.0861672289200438
 ub_cov_dhw = -0.0259957176620859
